@@ -1,4 +1,4 @@
---1 Select everything from test_health
+--  Select everything from test_health
 SELECT * FROM test_health;
 
 -- 2️ Select only status column
@@ -30,16 +30,7 @@ INSERT  INTO  test_health(status) VALUES ('PENDING');
 
 SELECT * , COALESCE(comment, 'No comment') AS comment_text FROM test_health;
 
---10  using aliases 
+--10  usinfg aliases 
 
 SELECT status AS current_status, created_at AS timestamp  FROM test_health;
 
-
---mu;tiple condition s
-
-SELECT * FROM test_health WHERE  status IN  ('OK', 'UNKNOWN');
-
--- Range checks (dates, numbers)
-SELECT *
-FROM test_health
-WHERE created_at >= NOW() - INTERVAL '1 day';
