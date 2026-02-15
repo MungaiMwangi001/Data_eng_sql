@@ -13,7 +13,7 @@ ORDER BY customer_id ASC;
 
 
 -- 2. WHERE VS HAVING
--- where - filtrers before grouping  while having filters grouped results after aggregation
+-- where - filters before grouping  while having filters grouped results after aggregation
 
 SELECT 
     customer_id,
@@ -80,22 +80,24 @@ ORDER BY c.customer_id ASC;
 
 -- to solve fan-out we can use subqueries or CTEs
 -- using subqueries
--- SELECT  
---     (SELECT COUNT(*) FROM customers) AS customer_c,  
---     (SELECT SUM(amount) FROM orders) AS total_customer_spent;
--- using CTEs
--- WITH customer_cte AS (
---     SELECT COUNT(*) AS customer_c
---     FROM customers
--- ),
--- order_cte AS (
---     SELECT SUM(amount) AS total_customer_spent
---     FROM orders
--- )
--- SELECT
---     c.customer_c,
---     o.total_customer_spent
--- FROM customer_cte c, order_cte o;
+SELECT  
+    (SELECT COUNT(*) FROM customers) AS customer_c,  
+    (SELECT SUM(amount) FROM orders) AS total_customer_spent;
+using CTEs
+WITH customer_cte AS (
+    SELECT COUNT(*) AS customer_c
+    FROM customers
+),
+
+
+order_cte AS (
+    SELECT SUM(amount) AS total_customer_spent
+    FROM orders
+)
+SELECT
+    c.customer_c,
+    o.total_customer_spent
+FROM customer_cte c, order_cte o;
 
 
 --8 ANTI JOIN
